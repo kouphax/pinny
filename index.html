@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin-top: 10em;
+        }
+
+        body.success {
+            background-color: lightgreen;
+        }
+
+        body.failure {
+            background-color: crimson;
+        }
+
+        .grid-container {
+            background-color: white;
+            width:960px;
+            font-weight: bold;
+            margin:3em auto;
+            display: grid;
+            grid-template-columns: auto auto auto;
+            padding: 10px;
+            border: 2px solid #000;
+            box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2), 0 12px 30px 0 rgba(0, 0, 0, 0.19);
+            border-radius: 10px;
+        }
+
+        .grid-item {
+            background-color: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            font-size: 30px;
+            text-align: center;
+            line-height: 2em;
+        }
+
+        .grid-item:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: rgba(255, 255, 255, 0.8);
+            cursor: pointer;
+        }
+
+        #code {
+            font-size: 5em;
+            text-align: center;
+        }
+
+        #unlock {
+            width:960px;
+            font-weight: bold;
+            font-size: 2em;
+            margin:3em auto;
+            text-align: center;
+            border-radius: 5px;
+            border: 2px solid rgba(0, 0, 0, 0.8);
+            line-height: 3em;
+            background-color: rgba(128, 128, 128, 0.8);
+            cursor: pointer;
+        }
+
+        #unlock.disabled {
+            opacity: 0.3;
+            cursor: default;
+        }
+    </style>
+</head>
+<body>
+<div class="grid-container" id="container"></div>
+<div id="unlock" class="disabled">UNLOCK</div>
+<div id="code"></div>
+<script>
+
+    const code = document.getElementById("code");
+    const unlock = document.getElementById("unlock");
+    const container = document.getElementById("container");
+
+    function update(value) {
+        if(code.innerText.length === container.dataset.code.length) {
+            code.innerText = value
+        } else {
+            code.innerText = code.innerText + value
+        }
+    }
+
+    function clear() {
+        code.innerText = ""
+    }
+
+    function backspace() {
+        if(code.innerText.length > 0) {
+            code.innerText = code.innerText.slice(0, -1);
+        }
+    }
+
+    function check() {
+        if(code.innerText.length === container.dataset.code.length) {
+            unlock.className = ""
+        } else {
+            unlock.className = "disabled"
+        }
+    }
+
+    function handler(event) {
+        document.body.className = "";
+        switch (event.target.innerText) {
+            case 'X':
+                clear();
+                break;
+            case '<':
+                backspace();
+                break;
+            default:
+                update(event.target.innerText);
+                break;
+        }
+        check();
+    }
+
+    function build(config) {
+        const pad = config.pad;
+        const columns = pad[0].map(() => "auto");
+
+        // delete the nodes
+        while(container.firstChild) {
+            container.removeChild(container.firstChild)
+        }
+
+        // set style
+        container.style = "grid-template-columns:" + columns.join(" ")
+
+        // build code
+        pad.forEach(row => {
+            row.forEach(cell => {
+                const node = document.createElement("DIV");
+                node.className = "grid-item";
+                node.innerText = cell;
+                container.appendChild(node);
+
+                node.addEventListener("click", handler)
+            })
+        });
+
+        // set the pin code
+        container.setAttribute("data-code", config.code || "1234")
+    }
+
+
+    unlock.addEventListener("click", event => {
+        if(event.target.className.indexOf("disabled") === -1) {
+            if(code.innerText === container.dataset.code) {
+                document.body.className = "success"
+            } else {
+                document.body.className = "failure";
+                setTimeout(() => {
+                    document.body.className = "";
+                }, 2000)
+            }
+        }
+    });
+
+    build({
+        pad: [
+            ['1', '2', '3'],
+            ['4', '5', '6'],
+            ['7', '8', '9'],
+            ['X', '0', '<']
+        ],
+        code: "00000"
+    });
+
+    // YOU CAN DO OTHER KEYPAD LAYOUT AS WELL AS LONG AS THEY ARE UNIFORM
+    // build({
+    //     pad: [
+    //         ['A', 'B'],
+    //         ['C', 'D'],
+    //         ['X', '<']
+    //     ],
+    //     code: "ABC"
+    // });
+</script>
+</body>
+</html>
