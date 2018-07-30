@@ -162,15 +162,22 @@
         }
     });
 
-    build({
-        pad: [
-            ['1', '2', '3'],
-            ['4', '5', '6'],
-            ['7', '8', '9'],
-            ['X', '0', '<']
-        ],
-        code: "00000"
-    });
+    if(window.location.hash) {
+        // YOU CAN SEND BASE64 ENCODED VALID JSON IN AS THE HASH IN THE URL
+        const payload = atob(window.location.hash.slice(1));
+        const config = JSON.parse(payload);
+        build(config);
+    } else {
+        build({
+            pad: [
+                ['1', '2', '3'],
+                ['4', '5', '6'],
+                ['7', '8', '9'],
+                ['X', '0', '<']
+            ],
+            code: "00000"
+        });
+    }
 
     // YOU CAN DO OTHER KEYPAD LAYOUT AS WELL AS LONG AS THEY ARE UNIFORM
     // build({
