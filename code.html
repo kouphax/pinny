@@ -155,7 +155,10 @@
     unlock.addEventListener("click", event => {
         if(event.target.className.indexOf("disabled") === -1) {
             if(code.innerText === container.dataset.code) {
-                document.body.className = "success"
+                document.body.className = "success";
+                if(window.location.hash) {
+                    window.localStorage.setItem(window.location.hash, "true")
+                }
             } else {
                 document.body.className = "failure";
                 setTimeout(() => {
@@ -180,6 +183,15 @@
             ],
             code: "00000"
         });
+    }
+
+    if(window.location.hash) {
+        const hash = window.location.hash;
+        const result = window.localStorage.getItem(hash);
+        if(result === "true") {
+            document.body.className = "success";
+            code.innerText = container.dataset.code
+        }
     }
 
     // YOU CAN DO OTHER KEYPAD LAYOUT AS WELL AS LONG AS THEY ARE UNIFORM
