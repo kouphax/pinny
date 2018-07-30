@@ -95,6 +95,7 @@
         const hash = "#" + link.split("#")[1];
         if(window.localStorage.getItem(hash) === "true") {
             element.className += "code-broken";
+            element.removeAttribute("href")
         }
     });
 

@@ -159,6 +159,9 @@
                 if(window.location.hash) {
                     window.localStorage.setItem(window.location.hash, "true")
                 }
+                setTimeout(() => {
+                    window.location = window.location.protocol +  "//"  + window.location.host + "/"
+                }, 2000)
             } else {
                 document.body.className = "failure";
                 setTimeout(() => {
