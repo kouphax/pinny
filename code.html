@@ -16,6 +16,14 @@
             background-color: crimson;
         }
 
+        .header-container {
+            width:960px;
+            font-weight: bold;
+            margin:3em auto;
+            padding: 10px;
+            text-align: center;
+        }
+
         .grid-container {
             background-color: white;
             width:960px;
@@ -69,6 +77,9 @@
     </style>
 </head>
 <body>
+<div class="header-container">
+    <h1 id="title"></h1>
+</div>
 <div class="grid-container" id="container"></div>
 <div id="unlock" class="disabled">UNLOCK</div>
 <div id="code"></div>
@@ -77,6 +88,7 @@
     const code = document.getElementById("code");
     const unlock = document.getElementById("unlock");
     const container = document.getElementById("container");
+    const title = document.getElementById("title");
 
     function update(value) {
         if(code.innerText.length === container.dataset.code.length) {
@@ -148,7 +160,14 @@
         });
 
         // set the pin code
-        container.setAttribute("data-code", config.code || "1234")
+        container.setAttribute("data-code", config.code || "1234");
+
+        // set the title
+        if(config.title) {
+            title.innerText = config.title;
+        } else {
+            title.parentElement.removeChild(title);
+        }
     }
 
 
@@ -157,11 +176,11 @@
             if(code.innerText === container.dataset.code) {
                 document.body.className = "success";
                 if(window.location.hash) {
-                    window.localStorage.setItem(window.location.hash, "true")
+                    window.localStorage.setItem(window.location.hash, "true");
+                    setTimeout(() => {
+                        window.location = "./index.html"
+                    }, 2000)
                 }
-                setTimeout(() => {
-                    window.location = "./index.html"
-                }, 2000)
             } else {
                 document.body.className = "failure";
                 setTimeout(() => {
@@ -178,6 +197,7 @@
         build(config);
     } else {
         build({
+            title: "Math GL Paper 2 Section 2 (11-15)",
             pad: [
                 ['1', '2', '3'],
                 ['4', '5', '6'],
