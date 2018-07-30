@@ -38,7 +38,7 @@
             line-height: 2em;
         }
 
-        .grid-item:hover {
+        .grid-item.action:hover {
             background-color: rgba(0, 0, 0, 0.8);
             color: rgba(255, 255, 255, 0.8);
             cursor: pointer;
@@ -106,7 +106,7 @@
 
     function handler(event) {
         document.body.className = "";
-        switch (event.target.innerText) {
+        switch (event.target.innerText.trim()) {
             case 'X':
                 clear();
                 break;
@@ -130,17 +130,20 @@
         }
 
         // set style
-        container.style = "grid-template-columns:" + columns.join(" ")
+        container.style = "grid-template-columns:" + columns.join(" ");
 
         // build code
         pad.forEach(row => {
             row.forEach(cell => {
                 const node = document.createElement("DIV");
                 node.className = "grid-item";
-                node.innerText = cell;
                 container.appendChild(node);
 
-                node.addEventListener("click", handler)
+                if(cell && cell.trim() !== "") {
+                    node.className += " action";
+                    node.innerText = cell;
+                    node.addEventListener("click", handler);
+                }
             })
         });
 
