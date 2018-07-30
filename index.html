@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin-top: 10em;
+        }
+
+        body.success {
+            background-color: lightgreen;
+        }
+
+        body.failure {
+            background-color: crimson;
+        }
+
+        .grid-container {
+            background-color: white;
+            width:960px;
+            font-weight: bold;
+              font-size: 2em;
+            margin:3em auto;
+            display: grid;
+            grid-template-columns: auto;
+            padding: 40px;
+            border: 2px solid #000;
+            box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2), 0 12px 30px 0 rgba(0, 0, 0, 0.19);
+            border-radius: 10px;
+        }
+
+        .grid-item {
+            background-color: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            font-size: 30px;
+            text-align: center;
+            line-height: 2em;
+        }
+
+        .grid-item.action:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: rgba(255, 255, 255, 0.8);
+            cursor: pointer;
+        }
+
+        #code {
+            font-size: 5em;
+            text-align: center;
+        }
+
+        #unlock {
+            width:960px;
+            font-weight: bold;
+            font-size: 2em;
+            margin:3em auto;
+            text-align: center;
+            border-radius: 5px;
+            border: 2px solid rgba(0, 0, 0, 0.8);
+            line-height: 3em;
+            background-color: rgba(128, 128, 128, 0.8);
+            cursor: pointer;
+        }
+
+        #unlock.disabled {
+            opacity: 0.3;
+            cursor: default;
+        }
+    </style>
+</head>
+<body>
+
+
+
+
+<div class="grid-container" id="container">
+  <h1>GL Maths Paper 2</h1>
+
+  <ul>
+  <li><a href="https://pinchy.herokuapp.com/#ew0KICAgICJwYWQiOiBbDQogICAgICAgIFsiQSIsICJCIl0sDQogICAgICAgIFsiQyIsICJEIl0sDQogICAgICAgIFsiRSIsICJGIl0sDQogICAgICAgIFsiWCIsICI8Il0NCiAgICBdLA0KICAgICJjb2RlIjogIkVCRENFIg0KfQ==">Section 1 (1-5)</a></li>
+  <li><a href="https://pinchy.herokuapp.com/#ew0KICAgICJwYWQiOiBbDQogICAgICAgIFsiQSIsICJCIl0sDQogICAgICAgIFsiQyIsICJEIl0sDQogICAgICAgIFsiRSIsICJGIl0sDQogICAgICAgIFsiWCIsICI8Il0NCiAgICBdLA0KICAgICJjb2RlIjogIkFCQkNCIg0KfQ==">Section 2 (6-10)</a></li>
+  <li><a href="https://pinchy.herokuapp.com/#ew0KICAgICJwYWQiOiBbDQogICAgICAgIFsiQSIsICJCIl0sDQogICAgICAgIFsiQyIsICJEIl0sDQogICAgICAgIFsiRSIsICJGIl0sDQogICAgICAgIFsiWCIsICI8Il0NCiAgICBdLA0KICAgICJjb2RlIjogIkNFQUNCIg0KfQ==">Section 3 (11-15)</a></li>
+  <li><a href="https://pinchy.herokuapp.com/#ew0KICAgICJwYWQiOiBbDQogICAgICAgIFsiQSIsICJCIl0sDQogICAgICAgIFsiQyIsICJEIl0sDQogICAgICAgIFsiRSIsICJGIl0sDQogICAgICAgIFsiWCIsICI8Il0NCiAgICBdLA0KICAgICJjb2RlIjogIkVEQ0FFIg0KfQ==">Section 4 (16-20)</a></li>
+  <li><a href="https://pinchy.herokuapp.com/#ew0KICAgICJwYWQiOiBbDQogICAgICAgIFsiQSIsICJCIl0sDQogICAgICAgIFsiQyIsICJEIl0sDQogICAgICAgIFsiRSIsICJGIl0sDQogICAgICAgIFsiWCIsICI8Il0NCiAgICBdLA0KICAgICJjb2RlIjogIkNCQUVDIg0KfQ==">Section 5 (21-25)</a></li>
+  <li><a href="https://pinchy.herokuapp.com/#ew0KICAgICJwYWQiOiBbDQogICAgICAgIFsiQSIsICJCIl0sDQogICAgICAgIFsiQyIsICJEIl0sDQogICAgICAgIFsiRSIsICJGIl0sDQogICAgICAgIFsiWCIsICI8Il0NCiAgICBdLA0KICAgICJjb2RlIjogIkJEQ0FDIg0KfQ==">Section 6 (26-30)</a></li>
+  <li><a href="https://pinchy.herokuapp.com/#ew0KICAgICJwYWQiOiBbDQogICAgICAgIFsiQSIsICJCIl0sDQogICAgICAgIFsiQyIsICJEIl0sDQogICAgICAgIFsiRSIsICJGIl0sDQogICAgICAgIFsiWCIsICI8Il0NCiAgICBdLA0KICAgICJjb2RlIjogIkVBREJFIg0KfQ==">Section 7 (31-35)</a></li>
+  <li><a href="https://pinchy.herokuapp.com/#ew0KICAgICJwYWQiOiBbDQogICAgICAgIFsiQSIsICJCIl0sDQogICAgICAgIFsiQyIsICJEIl0sDQogICAgICAgIFsiRSIsICJGIl0sDQogICAgICAgIFsiWCIsICI8Il0NCiAgICBdLA0KICAgICJjb2RlIjogIkNBQ0VCIg0KfQ==">Section 8 (36-40)</a></li>
+  <li><a href="https://pinchy.herokuapp.com/#ew0KICAgICJwYWQiOiBbDQogICAgICAgIFsiQSIsICJCIl0sDQogICAgICAgIFsiQyIsICJEIl0sDQogICAgICAgIFsiRSIsICJGIl0sDQogICAgICAgIFsiWCIsICI8Il0NCiAgICBdLA0KICAgICJjb2RlIjogIkNBQ0VEIg0KfQ==">Section 9 (41-45)</a></li>
+  </ul>
+</div>
+</body>
+</html>
